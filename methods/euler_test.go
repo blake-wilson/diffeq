@@ -10,4 +10,4 @@ func benchmarkEuler(ts float64, b *testing.B) {
 
 func BenchmarkEulerOneHundredth(b *testing.B)  { benchmarkEuler(0.01, b) }
 func BenchmarkEulerOneThousandth(b *testing.B) { benchmarkEuler(0.001, b) }
-func BenchmarkEulerOneMillionth(b *testing.B)  { benchmarkTaylor(0.000001, b) }
+func BenchmarkEulerOneMillionth(b *testing.B)  { benchmarkEuler(0.000001, b) }
