@@ -13,3 +13,15 @@ func Factorial(value int32) float64 {
 
 	return retval
 }
+
+// Newton's root-finding method.  Generally a part of estimation of terms for
+// implicit numerical methods
+func Newton(f scalar_func, fprime scalar_func, tolerance float64, maxIterations int64) float64 {
+	// random first guess is left to be 0
+	var estimate float64
+
+	for difference := tolerance + 1; difference > tolerance && numIters <= maxIterations {
+		estimate -= f(estimate) / fprime(estimate)
+	}
+	return estimate
+}
