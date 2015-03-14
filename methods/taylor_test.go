@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTaylor(t *testing.T) {
+func BenchmarkTaylor(b *testing.B) {
 
 	simpleFunc := func(params ...float64) float64 { return 3 * params[0] * params[1] }
 	simpleFuncDeriv := func(params ...float64) float64 { return 6 * params[0] }

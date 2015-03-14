@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestEuler(t *testing.T) {
+func BenchmarkEuler(b *testing.B) {
 
 	simpleFunc := func(params ...float64) float64 { return 3 * params[0] * params[1] }
 	times, estimates := Euler(simpleFunc, 1, 0, 4, 0.01)
