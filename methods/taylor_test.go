@@ -7,8 +7,8 @@ import (
 
 func TestTaylor(t *testing.T) {
 
-	simpleFunc := func(time float64, val float64) float64 { return 3 * time * time }
-	simpleFuncDeriv := func(time float64, val float64) float64 { return 6 * time }
+	simpleFunc := func(params ...float64) float64 { return 3 * params[0] * params[1] }
+	simpleFuncDeriv := func(params ...float64) float64 { return 6 * params[0] }
 	times, estimates := Taylor(simpleFunc, 1, 0, 4, 0.01, simpleFuncDeriv)
 
 	for i := 0; i < len(times); i++ {

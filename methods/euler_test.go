@@ -7,7 +7,7 @@ import (
 
 func TestEuler(t *testing.T) {
 
-	simpleFunc := func(time float64, val float64) float64 { return 3 * time * time }
+	simpleFunc := func(params ...float64) float64 { return 3 * params[0] * params[1] }
 	times, estimates := Euler(simpleFunc, 1, 0, 4, 0.01)
 
 	for i := 0; i < len(times); i++ {

@@ -19,8 +19,9 @@ func Factorial(value int32) float64 {
 func Newton(f scalar_func, fprime scalar_func, tolerance float64, maxIterations int64) float64 {
 	// random first guess is left to be 0
 	var estimate float64
+	numIters := 0
 
-	for difference := tolerance + 1; difference > tolerance && numIters <= maxIterations {
+	for difference := tolerance + 1; difference > tolerance && int64(numIters) <= maxIterations; numIters++ {
 		estimate -= f(estimate) / fprime(estimate)
 	}
 	return estimate
