@@ -8,6 +8,7 @@ func benchmarkTaylor(ts float64, b *testing.B) {
 	}
 }
 
-func BenchmarkTaylorOneHundredth(b *testing.B) {
-	benchmarkTaylor(0.01, b)
-}
+// test various timesteps for the method.
+func BenchmarkTaylorOneHundredth(b *testing.B)  { benchmarkTaylor(0.01, b) }
+func BenchmarkTaylorOneThousandth(b *testing.B) { benchmarkTaylor(0.001, b) }
+func BenchmarkTaylorOneMillionth(b *testing.B)  { benchmarkTaylor(0.000001, b) }
