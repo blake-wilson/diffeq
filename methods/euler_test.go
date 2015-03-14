@@ -1,16 +1,13 @@
 package diffeq
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
-func BenchmarkEuler(b *testing.B) {
-
-	simpleFunc := func(params ...float64) float64 { return 3 * params[0] * params[1] }
-	times, estimates := Euler(simpleFunc, 1, 0, 4, 0.01)
-
-	for i := 0; i < len(times); i++ {
-		fmt.Printf("Value at t=%f is %f\n", times[i], estimates[i])
+func benchmarkEuler(ts float64, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Euler(simpleFunc, 1, 0, 4, ts)
 	}
+}
+
+func BenchmarkEulerOneHundredth(b *testing.B) {
+	benchmarkEuler(0.01, b)
 }
