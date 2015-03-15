@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
 
 	"github.com/blake-wilson/diffeq/methods"
@@ -16,12 +16,16 @@ func simpleFuncDeriv(params ...float64) float64 {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	times, estimates := diffeq.Taylor(simpleFunc, 1, 0, 4, 0.01, simpleFuncDeriv)
-	var printStr string
-	for i := 0; i < len(times); i++ {
-		printStr += fmt.Sprintf("Estimate for time %f is %f\n", (times[i]), estimates[i])
+	_, estimates := diffeq.Taylor(simpleFunc, 1, 0, 4, 0.01, simpleFuncDeriv)
+	json, err := json.Marshal(estimates)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
-	fmt.Fprintf(w, "%s", printStr)
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(json)
 }
 
 func main() {
