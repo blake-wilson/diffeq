@@ -6,7 +6,6 @@ type ExprToken struct {
 
 const (
 	numberType   = "Number"
-	stateType    = "state"
 	operatorType = "operator"
 	lParenType   = "lparen"
 	rParenType   = "rparen"
