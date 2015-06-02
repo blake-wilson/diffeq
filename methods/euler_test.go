@@ -1,6 +1,17 @@
 package diffeq
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/blake-wilson/exparser"
+	"github.com/blake-wilson/exparser/types"
+)
+
+var simpleFunc types.AstNode
+
+func init() {
+	simpleFunc, _ = exparser.EvalExpression("3*x^2")
+}
 
 func benchmarkEuler(ts float64, b *testing.B) {
 	for n := 0; n < b.N; n++ {
