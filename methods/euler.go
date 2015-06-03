@@ -22,7 +22,7 @@ func Euler(f types.AstNode, yInit float64, tInit float64, tFinal float64, timeSt
 
 		estimate = estimate + timeStep*f.Eval(ctx)
 		ctx.AssignVariable("t", i)
-		ctx.AssignVariable("x", estimate+f.Eval(ctx))
+		ctx.AssignVariable("x", estimate)
 
 		estimates = append(estimates, estimate)
 	}
