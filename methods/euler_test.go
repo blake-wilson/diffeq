@@ -5,12 +5,19 @@ import (
 
 	"github.com/blake-wilson/exparser"
 	"github.com/blake-wilson/exparser/types"
+	"github.com/stretchr/testify/assert"
 )
 
-var simpleFunc types.AstNode
+var simpleFunc, linearFunc types.AstNode
 
 func init() {
+	linearFunc, _ = exparser.EvalExpression("2*x")
 	simpleFunc, _ = exparser.EvalExpression("3*x^2")
+}
+
+func TestEuler(t *testing.T) {
+	_, estimates := Euler(linearFunc, 0, 1, 5, 0.01)
+	assert.Equal(t, float64(0), estimates[len(estimates)-1])
 }
 
 func benchmarkEuler(ts float64, b *testing.B) {
