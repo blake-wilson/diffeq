@@ -1,4 +1,4 @@
-package diffeq
+package methods
 
 import (
 	"testing"
@@ -16,8 +16,9 @@ func init() {
 }
 
 func TestEuler(t *testing.T) {
-	_, estimates := Euler(linearFunc, 0, 1, 5, 0.01)
-	assert.Equal(t, float64(0), estimates[len(estimates)-1])
+	estimates, err := Euler(linearFunc, 0, 1, 5, 0.01)
+	assert.NoError(t, err)
+	assert.Equal(t, float64(0), estimates[len(estimates)-1].Value)
 }
 
 func benchmarkEuler(ts float64, b *testing.B) {

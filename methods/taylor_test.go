@@ -1,4 +1,4 @@
-package diffeq
+package methods
 
 import (
 	"testing"
